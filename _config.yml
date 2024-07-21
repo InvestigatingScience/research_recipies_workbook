@@ -13,7 +13,6 @@ latex:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/InvestigatingScience/research_recipies_workbook 
-  path_to_book: docs 
   branch: main
 
 # Add GitHub buttons to your book
@@ -23,6 +22,7 @@ html:
 launch_buttons:
   colab_url: "https://colab.research.google.com"
   binderhub_url: "https://mybinder.org"
+  #binderhub_url: https://mybinder.org/v2/gh/InvestigatingScience/research_recipies_workbook/main?filepath={path}"
   thebe: true
 
 

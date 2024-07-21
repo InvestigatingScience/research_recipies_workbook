@@ -1,0 +1,8 @@
+name: research-env 
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - pyalex
