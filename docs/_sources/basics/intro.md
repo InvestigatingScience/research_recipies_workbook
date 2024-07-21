@@ -19,7 +19,7 @@ This workbook is work in progress
 
 ## Funded by 
 
-
+This work is funded by the BMBF and Prototype Fund.
 ![](./imgs/bmbf.png)
 ![](./imgs/ptf.png)
 
