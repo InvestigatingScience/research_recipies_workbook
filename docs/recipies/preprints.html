@@ -428,9 +428,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-helper-functions">1. Define helper functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-topic-year">2. Set the Topic &amp; Year</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-preprints">3. Get the preprints</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#store-the-data">4. Store the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-store-the-data">4. Process &amp; store the data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-sample-paper">5. Get a sample paper</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-basic-analysis">5. Do basic analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-analysis">6. Basic analysis</a></li>
 </ul>
             </nav>
         </div>
@@ -454,6 +454,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pyalex
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib
 </pre></div>
 </div>
 </div>
@@ -462,9 +463,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.26.0 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from pandas) (2.0.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from pandas) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from pandas) (2024.1)
 Requirement already satisfied: six&gt;=1.5 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.16.0)
@@ -476,6 +475,21 @@ Requirement already satisfied: urllib3 in /home/natalie-widmann/Dokumente/Datenj
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from requests-&gt;pyalex) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from requests-&gt;pyalex) (3.7)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from requests-&gt;pyalex) (2024.7.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: matplotlib in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (3.9.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (1.2.1)
+Requirement already satisfied: cycler&gt;=0.10 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (4.53.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (1.4.5)
+Requirement already satisfied: numpy&gt;=1.23 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (2.0.0)
+Requirement already satisfied: packaging&gt;=20.0 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (24.1)
+Requirement already satisfied: pillow&gt;=8 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (10.4.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (3.1.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from matplotlib) (2.9.0.post0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -530,6 +544,17 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Do
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_journal</span><span class="p">(</span><span class="n">primary_location</span><span class="p">):</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">primary_location</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">if</span> <span class="n">source</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">source</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="set-the-topic-year">
 <h2>2. Set the Topic &amp; Year<a class="headerlink" href="#set-the-topic-year" title="Link to this heading">#</a></h2>
@@ -538,7 +563,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Do
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variables reduce the size of the output and the time required for execution</span>
 <span class="n">topic</span> <span class="o">=</span> <span class="s1">&#39;COVID&#39;</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">2023</span>
+<span class="n">year</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">n_max</span> <span class="o">=</span> <span class="mi">500</span>        <span class="c1"># when set to None all papers are queried</span>
 </pre></div>
 </div>
@@ -550,44 +575,47 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Do
 <p>Run te following code to get the preprints for the specified parameters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">Works</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">publication_year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">primary_location</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;submittedVersion&#39;</span><span class="p">},</span> <span class="n">locations</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;is_published&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">cited_by_count</span><span class="o">=</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the </span>
+<span class="k">if</span> <span class="n">year</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">Works</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">publication_year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">primary_location</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;submittedVersion&#39;</span><span class="p">},</span> <span class="n">locations</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;is_published&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">cited_by_count</span><span class="o">=</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">Works</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">primary_location</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;submittedVersion&#39;</span><span class="p">},</span> <span class="n">locations</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;is_published&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">cited_by_count</span><span class="o">=</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span>
+    
+    
 <span class="n">preprints</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;publication_date&#39;</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="s1">&#39;cited_by_count&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">]</span>
 
 <span class="c1"># Iterate over all query results</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">query</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">per_page</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_max</span><span class="o">=</span><span class="n">n_max</span><span class="p">)):</span>
     
-    <span class="c1"># Get key properties</span>
-    <span class="n">oa_id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">publication_date</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;publication_date&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">doi</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">cited_by_count</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cited_by_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># Based on the published locations determine if it is a real preprint</span>
     <span class="n">locations_count</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;locations_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        
-    <span class="c1"># Join all authors</span>
-    <span class="n">authors</span> <span class="o">=</span> <span class="n">join_authors</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;authorships&#39;</span><span class="p">])</span>   
     <span class="n">locations</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;locations&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">locations_overview</span> <span class="o">=</span> <span class="n">join_locations</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;locations&#39;</span><span class="p">])</span>
     
     <span class="c1"># Only append the paper to the preprints if is not published in any other journal</span>
     <span class="k">if</span> <span class="n">locations_count</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_any_location_published</span><span class="p">(</span><span class="n">locations</span><span class="p">):</span>
-        <span class="n">preprints</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">oa_id</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s1">&#39;publication_date&#39;</span><span class="p">:</span> <span class="n">publication_date</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">:</span> <span class="n">doi</span><span class="p">,</span>
-                          <span class="s1">&#39;cited&#39;</span><span class="p">:</span> <span class="n">cited_by_count</span><span class="p">,</span> <span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="n">authors</span><span class="p">,</span>
-                          <span class="s1">&#39;locations&#39;</span><span class="p">:</span> <span class="n">locations_overview</span><span class="p">,</span> <span class="s1">&#39;location_count&#39;</span><span class="p">:</span> <span class="n">locations_count</span><span class="p">})</span>
+        <span class="c1"># get all relevant properties</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
+        <span class="c1"># include joined authors and locations</span>
+        <span class="n">properties</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="n">join_authors</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;authorships&#39;</span><span class="p">]),</span>
+                           <span class="s1">&#39;locations&#39;</span><span class="p">:</span> <span class="n">join_locations</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;locations&#39;</span><span class="p">]),</span>
+                           <span class="s1">&#39;journal&#39;</span><span class="p">:</span> <span class="n">get_journal</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;primary_location&#39;</span><span class="p">,</span> <span class="p">{})),</span>
+                           <span class="s1">&#39;location_count&#39;</span><span class="p">:</span> <span class="n">locations_count</span><span class="p">})</span>
+        
+        <span class="n">preprints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="store-the-data">
-<h2>4. Store the data<a class="headerlink" href="#store-the-data" title="Link to this heading">#</a></h2>
+<section id="process-store-the-data">
+<h2>4. Process &amp; store the data<a class="headerlink" href="#process-store-the-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">preprints</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;./results&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;./results/openalex_preprints_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">n_max</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Compute publication year</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publication_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publication_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -614,71 +642,183 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Do
       <th>title</th>
       <th>publication_date</th>
       <th>doi</th>
-      <th>cited</th>
+      <th>cited_by_count</th>
+      <th>language</th>
       <th>authors</th>
       <th>locations</th>
+      <th>journal</th>
       <th>location_count</th>
+      <th>publication_year</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>https://openalex.org/W4318909870</td>
-      <td>Overcoming Vaccine Skepticism in Pakistan: A C...</td>
-      <td>2023-02-02</td>
-      <td>https://doi.org/10.5281/zenodo.7597141</td>
-      <td>12</td>
-      <td>Bibi Aisha Sadiqa</td>
-      <td>submittedVersion: European Organization for Nu...</td>
+      <td>https://openalex.org/W3013515352</td>
+      <td>COVID-19 Screening on Chest X-ray Images Using...</td>
+      <td>2020-03-27</td>
+      <td>None</td>
+      <td>273</td>
+      <td>en</td>
+      <td>Jianpeng Zhang, Yutong Xie, Yi Li, Chunhua She...</td>
+      <td>submittedVersion - https://europepmc.org/artic...</td>
+      <td>None</td>
       <td>1</td>
+      <td>2020</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>https://openalex.org/W3197911323</td>
-      <td>The Political Economy of a Modern Pandemic: As...</td>
-      <td>2023-07-24</td>
-      <td>https://doi.org/10.32920/23739360.v1</td>
-      <td>7</td>
-      <td>John Shields, Zainab Abu Alrob</td>
-      <td>submittedVersion - https://doi.org/10.32920/23...</td>
-      <td>2</td>
+      <td>https://openalex.org/W3009111036</td>
+      <td>Clinical Pathology of Critical Patient with No...</td>
+      <td>2020-02-27</td>
+      <td>None</td>
+      <td>138</td>
+      <td>en</td>
+      <td>Weiren Luo, Hongjie Yu, Jizhou Gou, Xiaoxing L...</td>
+      <td>submittedVersion - http://rucweb.tsg211.com/ht...</td>
+      <td>None</td>
+      <td>1</td>
+      <td>2020</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>https://openalex.org/W4386199227</td>
-      <td>Clinical Rationale for SARS-CoV-2 Base Spike P...</td>
-      <td>2023-08-25</td>
-      <td>https://doi.org/10.5281/zenodo.8286460</td>
-      <td>5</td>
-      <td>Peter A. McCullough, Cade Wynn, Brian C Procter</td>
-      <td>submittedVersion: European Organization for Nu...</td>
+      <td>https://openalex.org/W3016112654</td>
+      <td>The COVID-19 risk perception: A survey on soci...</td>
+      <td>2020-03-21</td>
+      <td>https://doi.org/10.17632/wh9xk5mp9m.3</td>
+      <td>114</td>
+      <td>en</td>
+      <td>Toan Luu Duc Huynh</td>
+      <td>submittedVersion: Springer Nature - https://da...</td>
+      <td>Economics bulletin</td>
       <td>1</td>
+      <td>2020</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>https://openalex.org/W4319655309</td>
-      <td>Navigating the Post-COVID Market: A Prospectiv...</td>
-      <td>2023-02-09</td>
-      <td>https://doi.org/10.5281/zenodo.7625190</td>
-      <td>3</td>
-      <td>Peng Sun, Xiaode Zuo</td>
-      <td>submittedVersion: European Organization for Nu...</td>
+      <td>https://openalex.org/W3077072215</td>
+      <td>Undergraduate and Graduate Students' Mental He...</td>
+      <td>2020-08-17</td>
+      <td>None</td>
+      <td>105</td>
+      <td>en</td>
+      <td>Igor Chirikov, Krista M. Soria, Bonnie Horgos,...</td>
+      <td>submittedVersion - https://escholarship.org/co...</td>
+      <td>None</td>
       <td>1</td>
+      <td>2020</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>https://openalex.org/W4366573707</td>
-      <td>Machine Learning Based Classification and Clus...</td>
-      <td>2023-04-14</td>
-      <td>https://doi.org/10.5281/zenodo.7851775</td>
+      <td>https://openalex.org/W3012039349</td>
+      <td>COVID-19: The First Public Coronavirus Twitter...</td>
+      <td>2020-03-16</td>
+      <td>None</td>
+      <td>101</td>
+      <td>en</td>
+      <td>Emily Chen, Kristina Lerman, Emilio Ferrara</td>
+      <td>submittedVersion - https://europepmc.org/artic...</td>
+      <td>None</td>
+      <td>1</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>582</th>
+      <td>https://openalex.org/W3107567267</td>
+      <td>Gendered Socio-economic Implications of the CO...</td>
+      <td>2020-01-01</td>
+      <td>None</td>
       <td>3</td>
-      <td>M. Sharmila Devi</td>
+      <td>en</td>
+      <td>Emmanuel Ndhlovu, Archiford Tembo</td>
+      <td>submittedVersion - https://ideas.repec.org/a/r...</td>
+      <td>None</td>
+      <td>1</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>583</th>
+      <td>https://openalex.org/W3108417454</td>
+      <td>SAÚDE DO IDOSO EM TEMPOS DE PANDEMIA COVID-19:...</td>
+      <td>2020-10-22</td>
+      <td>https://doi.org/10.5281/zenodo.4118417</td>
+      <td>3</td>
+      <td>en</td>
+      <td>Maria Priscila Peixoto e Silva, Walquíria Lene...</td>
       <td>submittedVersion: European Organization for Nu...</td>
-      <td>2</td>
+      <td>Zenodo (CERN European Organization for Nuclear...</td>
+      <td>1</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>584</th>
+      <td>https://openalex.org/W3112705359</td>
+      <td>Price Discrimination-Driven Algorithmic Collus...</td>
+      <td>2020-09-24</td>
+      <td>None</td>
+      <td>3</td>
+      <td>en</td>
+      <td>Salil K. Mehra</td>
+      <td>submittedVersion: RELX Group (Netherlands) - h...</td>
+      <td>Social Science Research Network</td>
+      <td>1</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>585</th>
+      <td>https://openalex.org/W3112719799</td>
+      <td>DESAFIOS DA IMPLEMENTAÇÃO DO ENSINO REMOTO</td>
+      <td>2020-11-04</td>
+      <td>https://doi.org/10.5281/zenodo.4252805</td>
+      <td>3</td>
+      <td>pt</td>
+      <td>Dominique Guimarães de Souza, Jean Carlos Miranda</td>
+      <td>submittedVersion: European Organization for Nu...</td>
+      <td>Zenodo (CERN European Organization for Nuclear...</td>
+      <td>1</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>586</th>
+      <td>https://openalex.org/W3113564277</td>
+      <td>A PANDEMIA DA COVID-19 E OS IMPACTOS NA EDUCAÇÃO</td>
+      <td>2020-12-19</td>
+      <td>https://doi.org/10.5281/zenodo.4361693</td>
+      <td>3</td>
+      <td>en</td>
+      <td>Jurenice da Silva Barreto, Marília Rafaela Oli...</td>
+      <td>submittedVersion: European Organization for Nu...</td>
+      <td>Zenodo (CERN European Organization for Nuclear...</td>
+      <td>1</td>
+      <td>2020</td>
     </tr>
   </tbody>
 </table>
+<p>587 rows × 11 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store data as CSV file</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;./results&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;./results/openalex_preprints_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">n_max</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="get-a-sample-paper">
@@ -691,27 +831,129 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/natalie-widmann/Do
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                                   https://openalex.org/W4318909870
-title               Overcoming Vaccine Skepticism in Pakistan: A C...
-publication_date                                           2023-02-02
-doi                            https://doi.org/10.5281/zenodo.7597141
-cited                                                              12
-authors                                             Bibi Aisha Sadiqa
-locations           submittedVersion: European Organization for Nu...
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                                   https://openalex.org/W3013515352
+title               COVID-19 Screening on Chest X-ray Images Using...
+publication_date                                           2020-03-27
+doi                                                              None
+cited_by_count                                                    273
+language                                                           en
+authors             Jianpeng Zhang, Yutong Xie, Yi Li, Chunhua She...
+locations           submittedVersion - https://europepmc.org/artic...
+journal                                                          None
 location_count                                                      1
+publication_year                                                 2020
 Name: 0, dtype: object
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="do-basic-analysis">
-<h2>5. Do basic analysis<a class="headerlink" href="#do-basic-analysis" title="Link to this heading">#</a></h2>
-<p>TODO:</p>
-<ul class="simple">
-<li><p>barchart with journals</p></li>
-<li><p>barchart with publication year</p></li>
-</ul>
+<section id="basic-analysis">
+<h2>6. Basic analysis<a class="headerlink" href="#basic-analysis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">plot_histogram</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+    <span class="c1"># Plot the histogram</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    
+    <span class="c1"># Adding labels and title</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Category&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of Categories </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Adding x-ticks with original category names</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;publication_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>publication_year
+2020    440
+2021    119
+2022     21
+2023      6
+2018      1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="s1">&#39;publication_year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e953f260cb57997c4e5b9ea2c95dd928371b7fef7490206ff203c6ca4f627c48.png" src="../_images/e953f260cb57997c4e5b9ea2c95dd928371b7fef7490206ff203c6ca4f627c48.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>journal
+Social Science Research Network                                              135
+Zenodo (CERN European Organization for Nuclear Research)                      73
+arXiv (Cornell University)                                                    24
+PubMed                                                                        20
+Economic Bulletin Boxes                                                       17
+MPRA Paper                                                                    16
+FRB SF weekly letter                                                          10
+medRxiv                                                                        9
+Economics bulletin                                                             8
+Choices                                                                        7
+Liberty Street Economics                                                       7
+Carolina Digital Repository (University of North Carolina at Chapel Hill)      7
+BIS quarterly review                                                           6
+Frontiers of Economics in China                                                6
+DergiPark (Istanbul University)                                                6
+EconStor Preprints                                                             4
+Policy Contributions                                                           4
+SOEPpapers on Multidisciplinary Panel Data Research                            4
+Australian journal of labour economics                                         3
+The Economic Research Guardian                                               3
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="s1">&#39;journal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages/IPython/core/events.py:82: UserWarning: Glyph 152 (\x98) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages/IPython/core/events.py:82: UserWarning: Glyph 156 (\x9c) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 152 (\x98) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/home/natalie-widmann/Dokumente/Datenjournalismus/InvestigatingScience/research_recipes/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 156 (\x9c) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+</pre></div>
+</div>
+<img alt="../_images/b54e96f556baf2e555357faae2bc1b2f8ceb77bd3dc96d66a04030f0b6db36b5.png" src="../_images/b54e96f556baf2e555357faae2bc1b2f8ceb77bd3dc96d66a04030f0b6db36b5.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -784,9 +1026,9 @@ Name: 0, dtype: object
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-helper-functions">1. Define helper functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-topic-year">2. Set the Topic &amp; Year</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-preprints">3. Get the preprints</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#store-the-data">4. Store the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-store-the-data">4. Process &amp; store the data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-sample-paper">5. Get a sample paper</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-basic-analysis">5. Do basic analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-analysis">6. Basic analysis</a></li>
 </ul>
   </nav></div>
 
