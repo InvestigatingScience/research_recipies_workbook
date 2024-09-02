@@ -2,11 +2,11 @@
 title: Introduction
 ---
 
-# Follow The Grant - Research Recipies
+# Investigating Science - Research Recipies
 
-This is a workbook to get science journalist started to use open source information with only little programming skills. 
+This is a workbook to get journalists started to use open source information with only little programming skills. 
 
-It gives an overview on the Follow the Grant project, the main science databases Open Alex and Dimensions AI, as well as hands-on research recipies.
+It gives an overview on the Investigating Science project, important databases Open Alex and Dimensions AI, as well as hands-on research recipies.
 
 :::{caution}
 This workbook is work in progress
@@ -25,6 +25,6 @@ This work is funded by the BMBF and Prototype Fund.
 
 
 
-Check out [Follow the Grant](https://followthegrant.org/) for more information.
+Also check out [Follow the Grant](https://followthegrant.org/), the sister project of Investigating Science.
 
 
