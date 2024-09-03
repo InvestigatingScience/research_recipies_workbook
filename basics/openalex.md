@@ -4,6 +4,4 @@ OpenAlex is a free and open catalog research. It is structured around â€œworksâ€
 
 OpenAlex is now the standard for an open bibliographic database and is as such central to projects like ours. 
 
-Its data is available via an API and a full database snapshot, as well an web application for searching and exploring. 
-![image](https://github.com/user-attachments/assets/aefef8a9-ba86-492e-9e2e-fc28d178526c)
-
+Its data is available via an API and a full database snapshot, as well an web application for searching and exploring.
