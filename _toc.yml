@@ -2,14 +2,12 @@
 format: jb-book
 root: basics/intro
 parts:
-  - caption: Follow the Grant
+  - caption: Investigating Science 
     chapters:
     - file: basics/ftg
-    - file: basics/investigations
   - caption: Datasets
     chapters:
     - file: basics/openalex
-    - file: basics/dimensions
   - caption: Research Recipies
     chapters:
     - file: recipies/preprints

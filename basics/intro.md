@@ -2,7 +2,8 @@
 title: Introduction
 ---
 
-# Investigating Science - Research Recipies
+# Investigating Science
+## - Research Recipies
 
 This is a workbook to get journalists started to use open source information with only little programming skills. 
 
