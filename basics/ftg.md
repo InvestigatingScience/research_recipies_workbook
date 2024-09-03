@@ -1,55 +1,9 @@
-# Follow the Grant 
+# Investigating Science
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
-This is a simple file to help you get started and show off some syntax.
+Investigating Science wants to help journalists to be watchdogs of science and research. It uses bibliometrics, i.e. the analysis of scientific publication databases, to identify indications of problematic research practices such as citation cartels, predatory journals, retracted articles and other abuses in the research and publication system. The research platform offers sample analyses, recipes and code for carrying out these analyses yourself. 
 
-## What is MyST?
+Problems with research integrity are widespread and damage the scientific system. For example, high-ranking and groundbreaking publications on Alzheimer's disease have come under suspicion of falsification. A 2016 analysis found problems in 4 percent of the studies analyzed, half of which pointed to intentional manipulation, with a presumably much higher number of unreported cases. A study this year estimated the number of potentially falsified papers in medicine at over 20 percent. 
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+The control and correction mechanisms of the scientific system are sometimes inadequate. Even proven flawed studies are not reliably retracted and if this happens, they sometimes continue to be cited and thus remain part of the body of knowledge. Researchers implicated in wrongdoing very rarely experience consequences. 
 
-For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
-
-## Sample Roles and Directives
-
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
-
-Here is a "note" directive:
-
-```{note}
-Here is a note
-```
-
-It will be rendered in a special box when you build your book.
-
-Here is an inline directive to refer to a document: {doc}`markdown-notebooks`.
-
-
-## Citations
-
-You can also cite references that are stored in a `bibtex` file. For example,
-the following syntax: `` {cite}`holdgraf_evidence_2014` `` will render like
-this: {cite}`holdgraf_evidence_2014`.
-
-Moreover, you can insert a bibliography into your page with this syntax:
-The `{bibliography}` directive must be used for all the `{cite}` roles to
-render properly.
-For example, if the references for your book are stored in `references.bib`,
-then the bibliography is inserted with:
-
-```{bibliography}
-```
-
-## Learn more
-
-This is just a simple starter to get you started.
-You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
+Investigative science journalism can take on the role of a watchdog, but faces technological hurdles to systematically tackle the topic. This is where we want to help with our methods and knowledge.
